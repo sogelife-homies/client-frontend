@@ -1,29 +1,28 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-    apiKey: REACT_APP_OPENAI_API_KEY,
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true, //just for the POC...
 });
 
 const defaultRoles = [
     {
         role: "system",
-        content: "As an ESG KPI processor, your primary function is to dissect and interpret Environmental, Social, and Governance (ESG) Key Performance Indicators (KPIs) tied to diverse investment assets, each linked to a specific corporation. Your output consists of two key elements: a numerical metric that encapsulates the environmental sustainability of the asset or stock, and a succinct summary sentence that highlights the core rationale behind the metric’s value, offering insights into the asset’s sustainability profile."
-    },
-    {
-        role: "user",
-        content: "As a conscientious investor via a life insurance company, you entrust your funds to a variety of sustainable investments, ranging from stocks to bonds. The overarching objective is twofold: to secure financial growth and to ensure that your investment leaves a positive imprint on environmental and social sectors. Your engagement is driven by a desire to see tangible evidence of how your financial contributions aid in the broader context of environmental preservation and the fight against global warming."
+        content: "Aggregates the individual KPI analyses to compute an overall Sustainability Score, represented as a percentage (0%-100%) and a corresponding emoji. It then generates a comprehensive summary that explains how this score was derived from the KPIs, including the impact and weighting of each KPI. The system ensures that the output is structured with two attributes: 'score', 'emoji' and 'summary'."
     },
     {
         role: "assistant",
-        content: "Tasked with the crucial role of parsing ESG KPIs, your mandate is to distill these indicators into a comprehensive environmental impact metric for each investment, reflecting the entity’s environmental stewardship or its impact on ecological matters. Accompanying this metric, you must craft a brief summary, no longer than 100 characters, no shorter than 90 characters, that encapsulates the essence of your metric derivation. This narrative is vital, as it bridges the gap between complex KPI analysis and the investor’s understanding of an asset’s environmental footprint."
-    }
+        content: "Analyzes the provided JSON input containing sustainability KPIs, calculating a preliminary score for each KPI based on its performance relative to sustainability targets. It considers the importance (weighting) of each KPI in contributing to overall environmental sustainability. The assistant synthesizes this information into a detailed analysis."
+    },
+
+    // {
+    //     role: "user",
+    //     content: "As a conscientious investor through a life insurance company, you prioritize the sustainability impact of your investments. You understand that your premiums are funneled into stocks, bonds, and other assets with a sustainability focus. Your primary interest lies in assessing how these investments contribute to combating global warming and enhancing social welfare. You seek clarity on the environmental and social returns of your portfolio, alongside financial performance. This system helps you gauge the sustainability impact of your investments, providing you with a score and summary that detail the environmental and social outcomes driven by your investment choices."
+    // }
 ]
 
 export const processKPI = async (kpi = '') => {
-
-    const content = `Describe the ESG KPI which is equal to ${kpi}`
-
+    const content ="Calculate sustainability output in the strict stringifyed JSON format (attributes: score, summary, emoji) for the ESG KPI list. Score: 0%-100%, Emoji represents the score: 0% -saddest, 100% - happiest. Summary - 250-300 characters. The ESG KPI list: " + JSON.stringify(kpi)
     const params = {
         messages: [
             ...defaultRoles,

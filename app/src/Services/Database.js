@@ -1,4 +1,4 @@
-const database = {
+export const database = {
     "1": "Carbon Emission, less than, million metric tons per year",//400
     "2": "Energy Consumption, less than, giga joules per year",//120,000
     "3": "Water Withdrawal, less than, million cubic meters per year",//5
@@ -8,7 +8,7 @@ const database = {
 }
 
 //ChatGPT will expect the following input
-const kpis = {
+export const kpis = {
     "Carbon Emission, less than, million metric tons per year": 400,
     "Energy Consumption, less than, giga joules per year": 120000,
     "Water Withdrawal, less than, million cubic meters per year": 5,

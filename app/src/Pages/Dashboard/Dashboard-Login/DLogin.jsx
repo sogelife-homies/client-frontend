@@ -43,7 +43,6 @@ const DLogin = () => {
   // ************************************************
   const [Loading, setLoading] = useState(false);
   const [placement, SetPlacement] = useState("Client");
-  const [kpi, setKpi] = useState("Waiting");
   const [formvalue, setFormvalue] = useState({
     ID: "",
     password: "",
@@ -55,11 +54,6 @@ const DLogin = () => {
   };
   const navigate = useNavigate();
   const HandleSubmit = (e) => {
-    // (async ()=>{
-    //   const processedKPI =await processKPI(1337)
-    //   console.debug("processedKPI >>", processedKPI)
-    //   setKpi(processedKPI)
-    // })()
 
     e.preventDefault();
     setLoading(true);
@@ -225,8 +219,6 @@ const DLogin = () => {
                 required
               />
               <button type="submit">{Loading ? "Loading..." : "Submit"}</button>
-              <p>{kpi}</p>
-
               {/* ********************************************************* */}
               <Drawer
                 title="Forget Password"

@@ -13,6 +13,8 @@ import doughnutChartData from "../../../../Components/Chart/doughnut";
 import { Popup } from 'react-easy-popup';
 import 'react-easy-popup/dist/react-easy-popup.min.css';
 import Web3 from 'web3';
+import {processKPI} from "../../../../Services/ChatGPT";
+import {kpis} from "../../../../Services/Database";
 
 
 const FrontPage = () => {
@@ -33,8 +35,13 @@ const FrontPage = () => {
   const [selectedRecord, setSelectedRecord] = useState(null);
 
   const handleMetricClick = (record) => {
-    setSelectedRecord(record);
-  setVisible(true);
+    (async ()=>{
+      console.debug("kpis >>", kpis)
+
+      const processedKPI =await processKPI(kpis)
+      setSelectedRecord(JSON.parse(processedKPI));
+      setVisible(true);
+    })()
   };
 
   const { patients } = useSelector((store) => store.data.patients);
@@ -268,10 +275,8 @@ readFromSmartContract()
           {selectedRecord ? (
             <>
               <h2 className="pop-up-title">Metric details</h2>
-              <p>Patient Name: {selectedRecord.patientName}</p>
-              <p>Age: {selectedRecord.age}</p>
-              <p>Blood Group: {selectedRecord.bloodGroup}</p>
-              <p>Email: {selectedRecord.email}</p>
+              <p>{selectedRecord?.score} -> {selectedRecord?.emoji} </p>
+              <p>{selectedRecord?.summary}</p>
             </>
           ) : (
             <p>No data available</p>

@@ -15,7 +15,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Drawer } from "antd";
 import spinner from "../../../img/sogelife-x-sigma.png";
-import {processKPI} from "../../../Services/ChatGPT";
 
 const notify = (text) => toast(text);
 
@@ -56,11 +55,11 @@ const DLogin = () => {
   };
   const navigate = useNavigate();
   const HandleSubmit = (e) => {
-    (async ()=>{
-      const processedKPI =await processKPI(1337)
-      console.debug("processedKPI >>", processedKPI)
-      setKpi(processedKPI)
-    })()
+    // (async ()=>{
+    //   const processedKPI =await processKPI(1337)
+    //   console.debug("processedKPI >>", processedKPI)
+    //   setKpi(processedKPI)
+    // })()
 
     e.preventDefault();
     setLoading(true);

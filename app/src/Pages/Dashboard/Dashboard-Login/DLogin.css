@@ -4,26 +4,92 @@
   align-items: center;
   gap: 10rem;
   height: 100vh;
-  background-color: rgba(255, 243, 243, 0.874);
+  background-color: #000000;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 
-.leftside {
-  width: 50%;
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
-.leftside img {
-  width: 100%;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-/* ********************************************************************** */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  animation: fadeInOut 4s ease-in-out forwards;
 
-.rightside {
+}
+
+.form {
   padding: 2rem;
   align-items: center;
   text-align: center;
   width: 35%;
   border-radius: 10px;
   background-color: white;
+}
+
+.radiogroup .radiobutton {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  background-color: rgba(204, 12, 123, 1);
+  color: white;
+  margin-right: 5px;
+  margin-top: 5px;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.radiogroup .radiobutton:hover {
+  background-color: rgba(204, 12, 123, 0.8); /* Slightly lighter color on hover */
+}
+
+/* Active and focus styles to maintain the design when the button is active or focused */
+.radiogroup .radiobutton:active,
+.radiogroup .radiobutton:focus {
+  outline: none;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3); /* Inner shadow for a "pressed" effect */
+  border-left:1px solid #000000 !important;
+
+}
+
+/* Adjust the checked radio button style to have a distinct look */
+.radiogroup .radiobutton.ant-radio-button-wrapper-checked {
+  background-color: rgba(204, 12, 123, 1); /* Keep background the same */
+  color: white; /* Keep text color the same */
+  box-shadow: none;
+  border-left:1px solid #000000 !important;
+}
+
+.radiogroup .radiobutton.ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+  background-color: rgba(204, 12, 123, 1);
+  border-left:1px solid #000000 !important;
+}
+
+.radiogroup .radiobutton.ant-radio-button-wrapper-checked:hover {
+  background-color: rgba(204, 12, 123, 0.9);
 }
 
 .Profileimg {
@@ -44,14 +110,14 @@
   font-weight: bold;
 }
 
-.rightside > h1 {
+.form > h1 {
   margin: 2rem;
 }
 
-.rightside input {
+.form input {
   display: block;
   width: 100%;
-  background-color: rgba(250, 225, 225, 0.874);
+  background-color: rgba(204, 12, 123, 0.5);
   height: 3rem;
   font-size: 1.2rem;
   margin: 10px 0px;
@@ -60,14 +126,14 @@
   padding: 10px;
 }
 
-.rightside button {
+.form button {
   width: 100%;
   height: 2.5rem;
   border-radius: 2rem;
   cursor: pointer;
   font-size: 1.3rem;
   font-weight: bolder;
-  background-color: rgba(244, 133, 133, 0.874);
+  background-color: rgba(204, 12, 123, 1);
   border: none;
   margin-top: 1.5rem;
 }
@@ -80,11 +146,7 @@ form h3 {
   .mainLoginPage {
     gap: 5rem;
   }
-
-  .leftside {
-    width: 45%;
-  }
-  .rightside {
+  .form {
     width: 40%;
   }
 }
@@ -94,22 +156,19 @@ form h3 {
     gap: 0rem;
   }
 
-  .leftside {
-    display: none;
-  }
-  .rightside {
+  .form {
     width: 60%;
   }
 }
 
 @media only screen and (max-width: 550px) {
-  .rightside {
+  .form {
     width: 80%;
   }
 }
 
 @media only screen and (max-width: 400px) {
-  .rightside {
+  .form {
     width: 95%;
   }
 }

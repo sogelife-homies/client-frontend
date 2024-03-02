@@ -5,6 +5,8 @@ import { CreatePayment, CreateReport } from "../../../../../Redux/Datas/action";
 import Sidebar from "../../GlobalFiles/Sidebar";
 import "./CSS/form.css";
 import { toast, ToastContainer } from "react-toastify";
+import {ethers} from 'ethers';
+import MetaMask from '../../../../../Components/Wallet/MetaMask';
 const notify = (text) => toast(text);
 
 const Discharge_and_Create_Slip = () => {
@@ -45,6 +47,22 @@ const Discharge_and_Create_Slip = () => {
     setmedicines([...medicines, med]);
     setmed(initmed);
   };
+
+  function getWallet(e) {
+    e.preventDefault();
+    console.log('clicked')
+      if (window.ethereum) {
+        console.log("Metamask installed on broswer")
+
+        window.ethereum.request({method: 'eth_requestAccounts'}).then(res => {
+          console.log(res)
+        })
+
+
+      } else {
+        console.log("Install Metamask Extension")
+      }
+  }
 
   const HandleReportSubmit = (e) => {
     e.preventDefault();
@@ -149,13 +167,17 @@ const Discharge_and_Create_Slip = () => {
                   />
                 </div>
               </div>
-            
+            <div>
               <button
                 className="formsubmitbutton bookingbutton"
                 onClick={HandleReportSubmit}
               >
                 {loading ? "Loading..." : "Add KPI Report"}
               </button>
+              <button className="formsubmitbutton bookingbutton" onClick={getWallet}>
+          Connect Wallet
+        </button>
+        </div>
             </form>
           </div>
         </div>

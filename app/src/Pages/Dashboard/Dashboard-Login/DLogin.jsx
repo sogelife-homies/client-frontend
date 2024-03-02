@@ -168,11 +168,14 @@ const DLogin = () => {
               onChange={placementChange}
               className={"radiogroup"}
             >
-              <Radio.Button value="Client" className={"radiobutton"}>
-                Client
+              <Radio.Button value="Nurse" className={"radiobutton"}>
+                Nurse
               </Radio.Button>
-              <Radio.Button value="Company" className={"radiobutton"}>
-                Company
+              <Radio.Button value="Doctor" className={"radiobutton"}>
+                Doctor
+              </Radio.Button>
+              <Radio.Button value="Admin" className={"radiobutton"}>
+                Admin
               </Radio.Button>
             </Radio.Group>
           </div>

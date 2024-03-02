@@ -37,7 +37,7 @@
   border: none;
   font-size: 1.2rem;
   padding-left: 10px;
-  background-color: rgb(253 176 149);
+  background-color: rgba(204, 12, 123, 1);
 }
 
 .Hideshow {
@@ -57,7 +57,7 @@
 .container {
   display: flex;
   gap: 2rem;
-  background-color: rgba(131, 220, 255, 0.29);
+  background-color: #423e37;
   width: 100%;
   /* border: 2px solid green; */
   width: 100%;
@@ -73,7 +73,7 @@ main {
 }
 
 .sidebar {
-  background: rgba(255, 166, 134, 0.874);
+  background: rgba(204, 12, 123, 1);
   color: #fff;
   height: 100vh;
   transition: all 0.5s;
@@ -106,13 +106,13 @@ main {
   transition: all 0.5s;
 }
 .link:hover {
-  background: rgba(253, 147, 108, 0.874);
-  color: #000;
+  background: #423e37;
+  color: #ffffff;
   transition: all 0.5s;
 }
 .active {
-  background: rgba(253, 147, 108, 0.874);
-  color: #000;
+  background: #423e37;
+  color: #ffffff;
 }
 .icon,
 .link_text {
@@ -129,13 +129,30 @@ main {
 }
 
 /**************************************** FRONT PAGE STYLE  *****************************************/
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
 .maindiv {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  width: 50%;
   gap: 2rem;
   margin-top: 2rem;
 }
+
+.rightSide {
+  width: 50%;
+  margin-left: 2rem;
+}
+
+.doughnut {
+  margin-left: 6rem;
+  width: 350px !important;
+  height: 350px !important;
+}
+
 
 .commondiv {
   border: 2px solid;
@@ -149,7 +166,7 @@ main {
 }
 .patientDetails h1 {
   margin-bottom: 1rem;
-  color: rgb(184 191 234);
+  color: rgba(204, 12, 123, 1);
 }
 
 .patientBox {
@@ -171,11 +188,103 @@ main {
   box-shadow: 0px 0px 36px -3px #00000026;
   border: none;
   background-color: white;
+  border: 2px solid rgba(204, 12, 123, 1)
+}
+
+.custom-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.custom-table .ant-table-tbody > tr > td {
+  background-color: white !important;
+  border: 1px solid #ebebeb83;
+
+}
+
+
+.custom-table .ant-table-thead {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 1px solid #ebebeb83;
+}
+
+.custom-table .ant-table-tbody > tr > td {
+  color: #333;
 }
 
 .overviewIcon {
   font-size: 4rem;
-  color: rgb(184 191 234);
+  color: rgba(204, 12, 123, 1);
+}
+
+.pop-up-container {
+  display: flex; /* Use flex layout */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;
+  animation: popIn 1s ease-out forwards;
+  height: 250px;
+  width: 250px;
+  border-radius: 12px;
+}
+
+.pop-up {
+  animation: popIn 1s ease-out forwards;
+  width: 400px;
+  height: 300px;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 15px;
+}
+
+.pop-up-button {
+  background-color: rgba(204, 12, 123, 1);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pop-up-title {
+  animation: popIn 0.6s ease-out forwards;
+  font-size: 1.5rem;
+  background-color: rgba(204, 12, 123, 1);
+  margin: 20px 0 20px 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.pop-up-close {
+  animation: popIn 0.6s ease-out forwards;
+  background-color: rgba(204, 12, 123, 1);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotateX(-30deg);
+    transform-origin: center;
+    perspective: 1000px;
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateX(0deg);
+  }
 }
 
 /* ******************************************************** */

@@ -1,28 +1,39 @@
 import { Table } from "antd";
-import React from "react";
-import { MdPersonAdd } from "react-icons/md";
-import { FaUserNurse } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { MdAttachMoney } from "react-icons/md";
+import { MdChromeReaderMode } from "react-icons/md";
 import { RiEmpathizeLine } from "react-icons/ri";
-import { FaBed } from "react-icons/fa";
-import { MdOutlineBedroomParent } from "react-icons/md";
-import { FaAmbulance } from "react-icons/fa";
-import { BsFillBookmarkCheckFill } from "react-icons/bs";
-import { MdPayment } from "react-icons/md";
-import { RiAdminLine } from "react-icons/ri";
+import { MdEmojiEmotions  } from "react-icons/md";
 import Sidebar from "./Sidebar";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllData, GetPatients } from "../../../../Redux/Datas/action";
+import { Doughnut } from "react-chartjs-2";
+import 'chart.js/auto';
+import doughnutChartData from "../../../../Components/Chart/doughnut";
+import { Popup } from 'react-easy-popup';
+import 'react-easy-popup/dist/react-easy-popup.min.css';
 
 const FrontPage = () => {
   const columns = [
-    { title: "Name", dataIndex: "patientName", key: "patientName" },
-    { title: "Age", dataIndex: "age", key: "age" },
-    { title: "Disease", dataIndex: "disease", key: "disease" },
-    { title: "Blood Group", dataIndex: "bloodGroup", key: "bloodGroup" },
-    { title: "Department", dataIndex: "department", key: "department" },
-    { title: "Email", dataIndex: "email", key: "email" },
+    { title: "Asset", dataIndex: "patientName", key: "patientName" },
+    { title: "Company", dataIndex: "age", key: "age" },
+    { title: "Value", dataIndex: "bloodGroup", key: "bloodGroup" },
+    { title: "Metric", dataIndex: "email", key: "email",       
+    render: (text, record) => (
+      <>
+        {/* <span>{record.bloodGroup}</span> Display the blood group */}
+        {record.age} <button className="pop-up-button" onClick={() => handleMetricClick(record)}>?</button>
+      </>
+    ), },
   ];
+
+  const [visible, setVisible] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState(null);
+
+  const handleMetricClick = (record) => {
+    setSelectedRecord(record);
+  setVisible(true);
+  };
 
   const { patients } = useSelector((store) => store.data.patients);
   const {
@@ -42,27 +53,28 @@ const FrontPage = () => {
     <div className="container">
       <Sidebar />
       <div className="AfterSideBar">
-        <h1 style={{ color: "rgb(184 191 234)" }}>Overview</h1>
+        <h1 style={{ color: "rgba(204, 12, 123, 1)" }}>Portfolio Overview</h1>
+        <div className="contentWrapper">
         <div className="maindiv">
           <div className="one commondiv">
             <div>
               <h1>{data?.doctor}</h1>
-              <p>Doctor</p>
+              <p>Net Value</p>
             </div>
-            <MdPersonAdd className="overviewIcon" />
+            <MdAttachMoney className="overviewIcon" />
           </div>
           <div className="two commondiv">
             {" "}
             <div>
               <h1>{data?.nurse}</h1>
-              <p>Nurse</p>
+              <p>Assets</p>
             </div>
-            <FaUserNurse className="overviewIcon" />
+            <MdChromeReaderMode className="overviewIcon" />
           </div>
           <div className="three commondiv">
             <div>
               <h1>{data?.patient}</h1>
-              <p>Patient</p>
+              <p>Health</p>
             </div>
             <RiEmpathizeLine className="overviewIcon" />
           </div>
@@ -70,18 +82,38 @@ const FrontPage = () => {
             {" "}
             <div>
               <h1>{data?.admin}</h1>
-              <p>Admin</p>
+              <p>Global feeling</p>
             </div>
-            <RiAdminLine className="overviewIcon" />
+            <MdEmojiEmotions  className="overviewIcon" />
           </div>
         </div>
-        {/* ************************************* */}
+        <div className="rightSide">
+        <Doughnut className="doughnut" data={doughnutChartData} />
+          
+      </div>
+      </div>
         <div className="patientDetails">
-          <h1>Patient Details</h1>
+          <h1>Assets Details</h1>
           <div className="patientBox">
-            <Table columns={columns} dataSource={patients} />
+            <Table className="custom-table" columns={columns} dataSource={patients} />
           </div>
         </div>
+        <Popup className="pop-up-container"maskClosable visible={visible} onClose={() => setVisible(false)} rowClassName={() => 'custom-row'}>
+        <div className="pop-up">
+          {selectedRecord ? (
+            <>
+              <h2 className="pop-up-title">Metric details</h2>
+              <p>Patient Name: {selectedRecord.patientName}</p>
+              <p>Age: {selectedRecord.age}</p>
+              <p>Blood Group: {selectedRecord.bloodGroup}</p>
+              <p>Email: {selectedRecord.email}</p>
+            </>
+          ) : (
+            <p>No data available</p>
+          )}
+          <button className="pop-up-close" onClick={() => setVisible(false)}>Close</button>
+        </div>
+      </Popup>
       </div>
     </div>
   );

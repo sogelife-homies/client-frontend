@@ -46,7 +46,16 @@
 }
 
 .radiogroup .radiobutton {
-  text-align: center;
+
+  width: 50%;
+ 
+  margin-left: 2%;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(204, 12, 123, 1);
+  color: white;
+  /* text-align: center;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
@@ -59,7 +68,19 @@
   margin-right: 5px;
   margin-top: 5px;
   gap: 5px;
-  cursor: pointer;
+  cursor: pointer; */
+  margin-bottom: 5%;
+}
+
+.radiobutton2 {
+  width: 50%;
+ 
+  margin-left: 2%;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(201, 200, 200, 0.413);
+  color: white;
 }
 
 .radiogroup .radiobutton:hover {

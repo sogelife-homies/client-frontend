@@ -191,7 +191,7 @@ const DLogin = () => {
               <Radio.Button value="Company" className={"radiobutton"}>
                 Company
               </Radio.Button>
-              <Radio.Button value="Admin" className={"radiobutton"}>
+              <Radio.Button value="Admin" className={"radiobutton2"}>
                 Admin
               </Radio.Button>
             </Radio.Group>

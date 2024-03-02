@@ -1,0 +1,54 @@
+
+
+  .tag{
+    color: #cc0c7b; 
+    /* color: #ec698f;  */
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  /* .title {
+    background-color: #b3efb2;
+  } */
+  
+  .patientBox table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #cc0c7b; 
+  }
+  
+  .patientBox th,
+  .patientBox td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ebebeb83; 
+  }
+  
+  .patientBox th {
+    background-color: #cc0c7b; 
+    color: #fff; 
+  }
+  
+  .patientBox td {
+    background-color: #fff; 
+    color: #333; 
+  }
+  
+  /* .patientBox tr:nth-child(odd) {
+    background-color: #fff; 
+  } */
+  
+  /* .patientBox tr:nth-child(even) {
+    background-color: #fff; 
+  } */
+  
+  .patientBox tr:hover {
+    background-color: #cc0c7b; 
+  }
+  
+  @media screen and (max-width: 768px) {
+    .AfterSideBar {
+      margin-left: 0;
+    }
+  }
+  

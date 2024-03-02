@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { GetAllReports } from "../../../../../Redux/Datas/action";
 import Sidebar from "../../GlobalFiles/Sidebar";
 
+import "./CSS/AllReport.css";
+
 const AllReport = () => {
   const dispatch = useDispatch();
   const [Report, setReport] = useState();
@@ -21,17 +23,15 @@ const AllReport = () => {
 
         <div className="AfterSideBar">
           <div className="Payment_Page">
-            <h1 style={{ marginBottom: "2rem" }}>All Reports</h1>
+            <h1 className="tag" >All Reports</h1>
             <div className="patientBox">
               <table>
                 <thead>
-                  <tr>
-                    <th>Patient Name</th>
-                    <th>Department</th>
-                    <th>Doctor Name</th>
-                    <th>Patient Mobile</th>
-                    <th>Patient Age</th>
-                    <th>Date</th>
+                  <tr className="title">
+                    <th>Asset Name</th>
+                    <th>Value</th>
+                    <th>Metric</th>
+                    <th>Info</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -42,8 +42,6 @@ const AllReport = () => {
                         <td>{ele.docDepartment}</td>
                         <td>{ele.docName}</td>
                         <td>{ele.patientMobile}</td>
-                        <td>{ele.patientAge}</td>
-                        <td>{ele.date}</td>
                       </tr>
                     );
                   })}

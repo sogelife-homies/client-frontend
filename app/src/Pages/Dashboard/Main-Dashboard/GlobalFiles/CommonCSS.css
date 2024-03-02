@@ -37,7 +37,8 @@
   border: none;
   font-size: 1.2rem;
   padding-left: 10px;
-  background-color: rgb(253 176 149);
+  /* background-color: rgb(253 176 149); */
+  background-color: #bfd200;
 }
 
 .Hideshow {
@@ -57,7 +58,9 @@
 .container {
   display: flex;
   gap: 2rem;
-  background-color: rgba(131, 220, 255, 0.29);
+  /* background-color: rgba(131, 220, 255, 0.29); */
+  /* background-color: #f9fbea; */
+  background-color: #423e37;
   width: 100%;
   /* border: 2px solid green; */
   width: 100%;
@@ -73,7 +76,8 @@ main {
 }
 
 .sidebar {
-  background: rgba(255, 166, 134, 0.874);
+  /* background: rgba(255, 166, 134, 0.874); */
+  background: #cc0c7b;
   color: #fff;
   height: 100vh;
   transition: all 0.5s;

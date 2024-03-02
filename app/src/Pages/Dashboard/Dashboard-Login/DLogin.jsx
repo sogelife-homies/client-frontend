@@ -199,6 +199,16 @@ const DLogin = () => {
                 onChange={Handlechange}
                 required
               />
+              <button type="submit">{Loading ? "Loading..." : "Submit"}</button>
+              <p style={{ marginTop: "10px" }}>
+                Forget Password?{" "}
+                <span
+                  style={{ color: "blue", cursor: "pointer" }}
+                  onClick={showDrawer}
+                >
+                  Get it on Email !
+                </span>
+              </p>
 
               {/* ********************************************************* */}
               <Drawer

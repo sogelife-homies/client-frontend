@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
 import banner from "../../../img/banner.png";
 import admin from "../../../img/admin.jpg";
@@ -14,6 +14,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Drawer } from "antd";
+import spinner from "../../../img/sogelife-x-sigma.png";
 const notify = (text) => toast(text);
 
 const DLogin = () => {
@@ -26,10 +27,21 @@ const DLogin = () => {
   const onClose = () => {
     setOpen(false);
   };
+  const [loadingg, setLoadingg] = useState(true); // State to control the display of the spinner
+
+  useEffect(() => {
+    // Set a timeout to change the loading state after 2 seconds
+    const timer = setTimeout(() => {
+      setLoadingg(false);
+    }, 4000); // 2000 milliseconds = 2 seconds
+
+    // Clear the timer if the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
 
   // ************************************************
   const [Loading, setLoading] = useState(false);
-  const [placement, SetPlacement] = useState("Nurse");
+  const [placement, SetPlacement] = useState("Client");
   const [formvalue, setFormvalue] = useState({
     ID: "",
     password: "",
@@ -44,7 +56,7 @@ const DLogin = () => {
     e.preventDefault();
     setLoading(true);
     if (formvalue.ID !== "" && formvalue.password !== "") {
-      if (placement === "Nurse") {
+      if (placement === "Client") {
         let data = {
           ...formvalue,
           nurseID: formvalue.ID,
@@ -66,7 +78,7 @@ const DLogin = () => {
             notify("Something went Wrong, Please Try Again");
           }
         });
-      } else if (placement === "Doctor") {
+      } else if (placement === "Company") {
         let data = {
           ...formvalue,
           docID: formvalue.ID,
@@ -152,35 +164,37 @@ const DLogin = () => {
     });
   };
 
+  if (loadingg) {
+    // If loading is true, display the loading page with the logo
+    return (
+      <div className="loading-container">
+        <img src={spinner} alt="Loading" style={{ width: '500px', height: 'auto' }} />
+      </div>
+    );
+  }
+
   return (
     <>
       <ToastContainer />
-
       <div className="mainLoginPage">
-        <div className="leftside">
-          <img src={banner} alt="banner" />
-        </div>
-        <div className="rightside">
-          <h1>Login</h1>
+        <div className="form">
+          <h1>SIGMA</h1>
           <div>
             <Radio.Group
               value={placement}
               onChange={placementChange}
               className={"radiogroup"}
             >
-              <Radio.Button value="Nurse" className={"radiobutton"}>
-                Nurse
+              <Radio.Button value="Client" className={"radiobutton"}>
+                Client
               </Radio.Button>
-              <Radio.Button value="Doctor" className={"radiobutton"}>
-                Doctor
+              <Radio.Button value="Company" className={"radiobutton"}>
+                Company
               </Radio.Button>
               <Radio.Button value="Admin" className={"radiobutton"}>
                 Admin
               </Radio.Button>
             </Radio.Group>
-          </div>
-          <div className="Profileimg">
-            <img src={admin} alt="profile" />
           </div>
           <div>
             <p>ID - 100</p>
@@ -203,15 +217,6 @@ const DLogin = () => {
                 required
               />
               <button type="submit">{Loading ? "Loading..." : "Submit"}</button>
-              <p style={{ marginTop: "10px" }}>
-                Forget Password?{" "}
-                <span
-                  style={{ color: "blue", cursor: "pointer" }}
-                  onClick={showDrawer}
-                >
-                  Get it on Email !
-                </span>
-              </p>
 
               {/* ********************************************************* */}
               <Drawer
@@ -230,7 +235,7 @@ const DLogin = () => {
                     required
                   >
                     <option value="">User Type</option>
-                    <option value="nurse">Nurse</option>
+                    <option value="Client">Client</option>
                     <option value="doctor">Doctor</option>
                     <option value="admin">Admin</option>
                   </select>

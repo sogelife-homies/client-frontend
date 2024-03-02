@@ -12,6 +12,8 @@ import 'chart.js/auto';
 import doughnutChartData from "../../../../Components/Chart/doughnut";
 import { Popup } from 'react-easy-popup';
 import 'react-easy-popup/dist/react-easy-popup.min.css';
+import Web3 from 'web3';
+
 
 const FrontPage = () => {
   const columns = [
@@ -48,6 +50,169 @@ const FrontPage = () => {
     dispatch(GetPatients());
     dispatch(GetAllData());
   }, []);
+
+  const jsonRpcURL = 'https://node.ghostnet.etherlink.com/';
+  const web3 = new Web3(jsonRpcURL);
+
+  const abi = [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "commitment",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "proof",
+          "type": "bytes"
+        }
+      ],
+      "name": "addPrivateKPI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "addPublicKPI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getKPIKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPrivateKPIStat",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPublicKPI",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "company",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kpiId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "vefifier",
+          "type": "address"
+        }
+      ],
+      "name": "setKPIVerfier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+  const contractAddress = '0xd6Ec7C42cC35B8419e398cFe29684baEAb0c2F9d';
+  
+  const contract = new web3.eth.Contract(abi, contractAddress)
+
+  async function readFromSmartContract()
+{   
+    const balanceOfAccount = await contract.methods.getPublicKPI('0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b', 1).call()
+    console.log("this is a test: ", balanceOfAccount)
+}
+
+readFromSmartContract()
 
   return (
     <div className="container">

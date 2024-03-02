@@ -22,7 +22,7 @@ const defaultRoles = [
 ]
 
 export const processKPI = async (kpi = '') => {
-    const content ="Calculate sustainability output in the strict stringifyed JSON format (attributes: score, summary, emoji) for the ESG KPI list. Score: 0%-100%, Emoji represents the score: 0% -saddest, 100% - happiest. Summary - 250-300 characters. The ESG KPI list: " + JSON.stringify(kpi)
+    const content ="Calculate sustainability output in the strict stringifyed JSON format (attributes: score, summary, emoji) for the ESG KPI list. Score: 0%-100%, Emoji represents the score: 0% -saddest, 100% - happiest. Summary - 250 characters. The ESG KPI list: " + JSON.stringify(kpi)
     const params = {
         messages: [
             ...defaultRoles,

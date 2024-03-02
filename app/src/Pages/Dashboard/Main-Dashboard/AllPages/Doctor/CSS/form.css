@@ -1,0 +1,121 @@
+.Main_div {
+    margin: auto;
+    margin-top: 2rem;
+    padding: 3rem;
+    border-radius: 10px;
+    width: 50%;
+    background-color: white;
+  }
+  
+  .Main_div h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0rem 0rem 1rem 0rem;
+    color: #cc0c7b;
+  }
+
+  form div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    padding-top: 5px;
+    align-items: center;
+  }
+
+  /* .form div:hover {
+    background: #cc0c7b;
+  } */
+  
+  form input,
+  select,
+  textarea {
+    width: 100%;
+    background-color: #7f7f7f32;
+    height: 3rem;
+    font-size: 1.2rem;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+  
+  .inputdiv {
+    display: flex;
+    justify-content: left;
+    width: 70%;
+  }
+
+  .formsubmitbutton {
+    display: flex;
+    text-align: center;
+    width: 20%;
+    height: 4.8rem;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    border: none;
+    background: #8f8f8f;
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  .formsubmitbutton:hover {
+    background: #cc0c7b;
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    .Main_Add_Doctor_div img {
+      width: 30%;
+    }
+    .formsubmitbutton {
+      width: 20%;
+    }
+  }
+  
+  @media only screen and (max-width: 850px) {
+    .Main_Add_Doctor_div img {
+      width: 30%;
+    }
+    form div {
+      display: block;
+    }
+    .inputdiv {
+      width: 100%;
+    }
+    .Main_Add_Doctor_div {
+      padding: 1rem;
+    }
+    .adressdiv {
+      display: block;
+    }
+    .formsubmitbutton {
+      width: 40%;
+    }
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .Main_Add_Doctor_div h1 {
+      font-size: 1.7rem;
+    }
+    .Main_Add_Doctor_div {
+      width: 100%;
+    }
+    .formsubmitbutton {
+      width: 70%;
+    }
+  }
+  
+  @media only screen and (max-width: 450px) {
+    .formsubmitbutton {
+      width: 70%;
+    }
+  }

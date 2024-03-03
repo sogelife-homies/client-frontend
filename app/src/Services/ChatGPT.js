@@ -193,8 +193,7 @@ const abi = [
   }
 ]
 const contractAddress = '0xd6Ec7C42cC35B8419e398cFe29684baEAb0c2F9d';
-const address = '0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b';
-
+const address = '0xcBf7E1043ca0Aa9a5D9C7d67E53dFd5a7839F872';
 const contract = new web3.eth.Contract(abi, contractAddress)
 
 const readFromSmartContract = async () => {

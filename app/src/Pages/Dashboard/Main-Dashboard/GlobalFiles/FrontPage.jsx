@@ -18,45 +18,32 @@ import {kpis} from "../../../../Services/Database";
 
 
 const FrontPage = () => {
-  // const columns = [
-  //   { title: "Asset", dataIndex: "patientName", key: "patientName" },
-  //   { title: "Company", dataIndex: "age", key: "age" },
-  //   { title: "Value", dataIndex: "bloodGroup", key: "bloodGroup" },
-  //   { title: "Metric", dataIndex: "email", key: "email",       
-  //   render: (text, record) => (
-  //     <>
-  //       {/* <span>{record.bloodGroup}</span> Display the blood group */}
-  //       {record.age} <button className="pop-up-button" onClick={() => handleMetricClick(record)}>?</button>
-  //     </>
-  //   ), },
-  // ];
-
   const [visible, setVisible] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
 
-  const handleMetricClick = (record) => {
-    (async ()=>{
-      console.debug("kpis >>", kpis)
+  // const handleMetricClick = (record) => {
+  //   (async ()=>{
+  //     console.debug("kpis >>", kpis)
 
-      const processedKPI =await processKPI(kpis)
+  //     const processedKPI =await processKPI(kpis)
+  //     setSelectedRecord(JSON.parse(processedKPI));
+  //     setVisible(true);
+  //   })()
+  // };
+  useEffect(() => {
+    const loadDefaultRecord = async () => {
+      console.debug("kpis >>", kpis);
+      const processedKPI = await processKPI(kpis);
       setSelectedRecord(JSON.parse(processedKPI));
-      setVisible(true);
-    })()
+    };
+
+    loadDefaultRecord();
+    readFromSmartContract();
+  }, []);
+
+  const handleMetricClick = async () => {
+    setVisible(true);
   };
-
-  // const { patients } = useSelector((store) => store.data.patients);
-  // const {
-  //   dashboard: { data },
-  // } = useSelector((store) => store.data);
-
-  // console.log(data);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(GetPatients());
-  //   dispatch(GetAllData());
-  // }, []);
 
   const jsonRpcURL = 'https://node.ghostnet.etherlink.com/';
   const web3 = new Web3(jsonRpcURL);
@@ -220,7 +207,7 @@ const FrontPage = () => {
     console.log("this is a test: ", test);
     setContractData(test.toString()); // Store the result in state
   };
-
+  
   useEffect(() => {
     readFromSmartContract();
   }, []);
@@ -289,23 +276,24 @@ const FrontPage = () => {
                         <td>Nestlé S.A. (NESN.SW)</td>
                         <td>7 000 €</td>
                         <td>{selectedRecord?.score}</td>
+                        {/* <td><button className="pop-up-button">?</button></td> */}
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
                         <td>Royal Dutch Shell plc (RDSB.L)</td>
-                        <td> 000 €</td>
+                        <td> 4 000 €</td>
                         <td>10%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
                         <td>SAP SE (SAP.DE)</td>
-                        <td>2 000 €</td>
+                        <td>3 000 €</td>
                         <td>10%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
                         <td>LVMH (LVMH.PA)</td>
-                        <td>7 000 €</td>
+                        <td> 2 000 €</td>
                         <td>10%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
@@ -323,7 +311,7 @@ const FrontPage = () => {
                       </tr>
                       <tr>
                         <td>Total SE (TOT.PA)</td>
-                        <td>3 500 €</td>
+                        <td>1 500 €</td>
                         <td>5%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
@@ -368,6 +356,7 @@ const FrontPage = () => {
       </div>
     </div>
     </div>
+
   );
 };
 

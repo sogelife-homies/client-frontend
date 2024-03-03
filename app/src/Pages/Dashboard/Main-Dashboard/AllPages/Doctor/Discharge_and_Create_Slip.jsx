@@ -5,7 +5,6 @@ import { CreatePayment, CreateReport } from "../../../../../Redux/Datas/action";
 import Sidebar from "../../GlobalFiles/Sidebar";
 import "./CSS/form.css";
 import { toast, ToastContainer } from "react-toastify";
-import {ethers, AbstractProvider} from 'ethers';
 
 import Web3 from 'web3';
 
@@ -323,7 +322,7 @@ await contract.methods.addPublicKPI('0xBd6ce1a1cDC207913BffE8C0d802B8e793240E42'
                 className="formsubmitbutton bookingbutton"
                 onClick={(e) => {
                   e.preventDefault();
-                  getWallet('0xBd6ce1a1cDC207913BffE8C0d802B8e793240E42', 1, 1000);
+                  getWallet('0xBd6ce1a1cDC207913BffE8C0d802B8e793240E42', 6, 50000);
                 }}
               >
                 {loading ? "Loading..." : "Add KPI Report"}

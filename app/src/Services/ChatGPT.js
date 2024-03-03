@@ -201,13 +201,15 @@ const readFromSmartContract = async () => {
     let resultObject = {};
   
     for (let i = 1; i <= 6; i++) {
-      const test = await contract.methods.getPublicKPI(address, i).call();
+      let test = await contract.methods.getPublicKPI(address, i).call();
+      // Assuming test is returned as a BigInt (e.g., "1234n")
+      // Convert BigInt to Number, ensuring it's within safe range
+      test = Number(test); // Converts the BigInt to a Number
+
       const description = database[i.toString()]; // Convert i to string to match key
-      resultObject[description] = test; // Removes the 'n', keeps value as string
+      resultObject[description] = test; // Now test is a simple number
     }
   
     console.log(resultObject);
     return resultObject;
-  };
-  
-  readFromSmartContract();
+};

@@ -204,7 +204,6 @@ const FrontPage = () => {
 
   const readFromSmartContract = async () => {
     const test = await contract.methods.getPublicKPI('0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b', 1).call();
-    console.log("this is a test: ", test);
     setContractData(test.toString()); // Store the result in state
   };
   

@@ -1,12 +1,12 @@
-import { Table } from "antd";
+// import { Table } from "antd";
 import React, { useState, useEffect } from "react";
 import { MdAttachMoney } from "react-icons/md";
 import { MdChromeReaderMode } from "react-icons/md";
 import { RiEmpathizeLine } from "react-icons/ri";
 import { MdEmojiEmotions  } from "react-icons/md";
 import Sidebar from "./Sidebar";
-import { useDispatch, useSelector } from "react-redux";
-import { GetAllData, GetPatients } from "../../../../Redux/Datas/action";
+// import { useDispatch, useSelector } from "react-redux";
+// import { GetAllData, GetPatients } from "../../../../Redux/Datas/action";
 import { Doughnut } from "react-chartjs-2";
 import 'chart.js/auto';
 import doughnutChartData from "../../../../Components/Chart/doughnut";
@@ -18,18 +18,18 @@ import {kpis} from "../../../../Services/Database";
 
 
 const FrontPage = () => {
-  const columns = [
-    { title: "Asset", dataIndex: "patientName", key: "patientName" },
-    { title: "Company", dataIndex: "age", key: "age" },
-    { title: "Value", dataIndex: "bloodGroup", key: "bloodGroup" },
-    { title: "Metric", dataIndex: "email", key: "email",       
-    render: (text, record) => (
-      <>
-        {/* <span>{record.bloodGroup}</span> Display the blood group */}
-        {record.age} <button className="pop-up-button" onClick={() => handleMetricClick(record)}>?</button>
-      </>
-    ), },
-  ];
+  // const columns = [
+  //   { title: "Asset", dataIndex: "patientName", key: "patientName" },
+  //   { title: "Company", dataIndex: "age", key: "age" },
+  //   { title: "Value", dataIndex: "bloodGroup", key: "bloodGroup" },
+  //   { title: "Metric", dataIndex: "email", key: "email",       
+  //   render: (text, record) => (
+  //     <>
+  //       {/* <span>{record.bloodGroup}</span> Display the blood group */}
+  //       {record.age} <button className="pop-up-button" onClick={() => handleMetricClick(record)}>?</button>
+  //     </>
+  //   ), },
+  // ];
 
   const [visible, setVisible] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -44,19 +44,19 @@ const FrontPage = () => {
     })()
   };
 
-  const { patients } = useSelector((store) => store.data.patients);
-  const {
-    dashboard: { data },
-  } = useSelector((store) => store.data);
+  // const { patients } = useSelector((store) => store.data.patients);
+  // const {
+  //   dashboard: { data },
+  // } = useSelector((store) => store.data);
 
-  console.log(data);
+  // console.log(data);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(GetPatients());
-    dispatch(GetAllData());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(GetPatients());
+  //   dispatch(GetAllData());
+  // }, []);
 
   const jsonRpcURL = 'https://node.ghostnet.etherlink.com/';
   const web3 = new Web3(jsonRpcURL);
@@ -213,13 +213,17 @@ const FrontPage = () => {
   
   const contract = new web3.eth.Contract(abi, contractAddress)
 
-  async function readFromSmartContract()
-{   
-    const balanceOfAccount = await contract.methods.getPublicKPI('0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b', 1).call()
-    console.log("this is a test: ", balanceOfAccount)
-}
+  const [contractData, setContractData] = useState('');
 
-readFromSmartContract()
+  const readFromSmartContract = async () => {
+    const test = await contract.methods.getPublicKPI('0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b', 1).call();
+    console.log("this is a test: ", test);
+    setContractData(test.toString()); // Store the result in state
+  };
+
+  useEffect(() => {
+    readFromSmartContract();
+  }, []);
 
   return (
     <div className="container">
@@ -230,7 +234,7 @@ readFromSmartContract()
         <div className="maindiv">
           <div className="one commondiv">
             <div>
-              <h1>{data?.doctor}</h1>
+              <h1>27</h1>
               <p>Net Value</p>
             </div>
             <MdAttachMoney className="overviewIcon" />
@@ -238,14 +242,14 @@ readFromSmartContract()
           <div className="two commondiv">
             {" "}
             <div>
-              <h1>{data?.nurse}</h1>
+              <h1>27</h1>
               <p>Assets</p>
             </div>
             <MdChromeReaderMode className="overviewIcon" />
           </div>
           <div className="three commondiv">
             <div>
-              <h1>{data?.patient}</h1>
+              <h1>27</h1>
               <p>Health</p>
             </div>
             <RiEmpathizeLine className="overviewIcon" />
@@ -253,7 +257,7 @@ readFromSmartContract()
           <div className="six commondiv">
             {" "}
             <div>
-              <h1>{data?.admin}</h1>
+              <h1>27</h1>
               <p>Global feeling</p>
             </div>
             <MdEmojiEmotions  className="overviewIcon" />
@@ -267,7 +271,47 @@ readFromSmartContract()
         <div className="patientDetails">
           <h1>Assets Details</h1>
           <div className="patientBox">
-            <Table className="custom-table" columns={columns} dataSource={patients} />
+            
+
+           <div className="patientBox">
+
+          <table>
+          <thead>
+                  <tr className="patientBox">
+                    <th>Asset Name</th>
+                    <th>Value</th>
+                    <th>Metric</th>
+                    <th>Info</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>fake name</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                </tbody>
+              </table>
+
           </div>
         </div>
         <Popup className="pop-up-container"maskClosable visible={visible} onClose={() => setVisible(false)} rowClassName={() => 'custom-row'}>
@@ -275,8 +319,14 @@ readFromSmartContract()
           {selectedRecord ? (
             <>
               <h2 className="pop-up-title">Metric details</h2>
-              <p>{selectedRecord?.score} -> {selectedRecord?.emoji} </p>
-              <p>{selectedRecord?.summary}</p>
+              <div className="pop-up-container-info">
+              <p className="pop-up-score">{selectedRecord?.score} ->{selectedRecord?.emoji} </p>
+              <p className="pop-up-sumup"> {selectedRecord?.summary}</p>
+              <div className="pop-up-kpi" >
+              <p> KPI X: {contractData}</p>
+              <p> KPI 1: {contractData}</p>
+              </div>
+              </div>
             </>
           ) : (
             <p>No data available</p>
@@ -285,6 +335,7 @@ readFromSmartContract()
         </div>
       </Popup>
       </div>
+    </div>
     </div>
   );
 };

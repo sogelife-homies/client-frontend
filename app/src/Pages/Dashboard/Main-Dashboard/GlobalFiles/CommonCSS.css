@@ -221,19 +221,19 @@ main {
 }
 
 .pop-up-container {
-  display: flex; /* Use flex layout */
-  flex-direction: column; /* Stack children vertically */
+  display: flex;
+  flex-direction: column; 
   align-items: center;
   animation: popIn 1s ease-out forwards;
-  height: 250px;
-  width: 250px;
+  max-height: 550px;
+  max-width: 750px;
   border-radius: 12px;
 }
 
 .pop-up {
   animation: popIn 1s ease-out forwards;
-  width: 400px;
-  height: 300px;
+  width: 700px;
+  height: 350px;
   justify-content: center;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -262,13 +262,48 @@ main {
 .pop-up-close {
   animation: popIn 0.6s ease-out forwards;
   background-color: rgba(204, 12, 123, 1);
-  color: white;
+  color: rgba(255, 255, 255, 0.719);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   margin-top: 5px;
   cursor: pointer;
 }
+
+.pop-up-container-info{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: flex-end;
+  align-items: center;
+}
+
+.pop-up-score{
+  display: flex;
+  align-items: center;
+  font-size: larger;
+  justify-content:center;
+  width: 20%;
+  height: 50px; 
+  border-radius: 20px; 
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.pop-up-sumup {
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  /* text-align: justify; */
+  text-align: left;
+  width: 500px;
+  margin-top: 5px;
+
+}
+
+.pop-up-kpi{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
 
 @keyframes popIn {
   0% {

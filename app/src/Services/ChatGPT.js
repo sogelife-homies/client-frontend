@@ -193,12 +193,13 @@ const abi = [
   }
 ]
 const contractAddress = '0xd6Ec7C42cC35B8419e398cFe29684baEAb0c2F9d';
-const address = '0xcBf7E1043ca0Aa9a5D9C7d67E53dFd5a7839F872';
+const address = '0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b';
+
 const contract = new web3.eth.Contract(abi, contractAddress)
 
 const readFromSmartContract = async () => {
     let resultObject = {};
-  
+
     for (let i = 1; i <= 6; i++) {
       let test = await contract.methods.getPublicKPI(address, i).call();
       // Assuming test is returned as a BigInt (e.g., "1234n")
@@ -208,7 +209,7 @@ const readFromSmartContract = async () => {
       const description = database[i.toString()]; // Convert i to string to match key
       resultObject[description] = test; // Now test is a simple number
     }
-  
+
     console.log(resultObject);
     return resultObject;
 };

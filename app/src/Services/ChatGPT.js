@@ -1,4 +1,7 @@
 import OpenAI from "openai";
+import React, { useState, useEffect } from "react";
+import Web3 from 'web3';
+import {database} from './Database.js';
 
 const openai = new OpenAI({
     apiKey: "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",
@@ -21,8 +24,10 @@ const defaultRoles = [
     // }
 ]
 
-export const processKPI = async (kpi = '') => {
-    const content ="Calculate sustainability output in the strict stringifyed JSON format (attributes: score, summary, emoji) for the ESG KPI list. Score: 0%-100%, Emoji represents the score: 0% -saddest, 100% - happiest. Summary - 250 characters. The ESG KPI list: " + JSON.stringify(kpi)
+export const processKPI = async () => {
+    const resultObject = await readFromSmartContract();
+
+    const content ="Calculate sustainability output in the strict stringifyed JSON format (attributes: score, summary, emoji) for the ESG KPI list. Score: 0%-100%, Emoji represents the score: 0% -saddest, 100% - happiest. Summary - 250 characters. The ESG KPI list: " + JSON.stringify(resultObject)
     const params = {
         messages: [
             ...defaultRoles,
@@ -35,3 +40,174 @@ export const processKPI = async (kpi = '') => {
     console.debug("chatCompletion.choices[0].message", chatCompletion.choices[0].message)
     return chatCompletion.choices[0].message.content;
 }
+
+const jsonRpcURL = 'https://node.ghostnet.etherlink.com/';
+const web3 = new Web3(jsonRpcURL);
+
+const abi = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "commitment",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "proof",
+        "type": "bytes"
+      }
+    ],
+    "name": "addPrivateKPI",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "addPublicKPI",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getKPIKey",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPrivateKPIStat",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPublicKPI",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "company",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "kpiId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "vefifier",
+        "type": "address"
+      }
+    ],
+    "name": "setKPIVerfier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
+const contractAddress = '0xd6Ec7C42cC35B8419e398cFe29684baEAb0c2F9d';
+const address = '0xE46DB4484E7eF0177Cc5e672d554DeDcEC0Bee3b';
+
+const contract = new web3.eth.Contract(abi, contractAddress)
+
+const readFromSmartContract = async () => {
+    let resultObject = {};
+  
+    for (let i = 1; i <= 6; i++) {
+      const test = await contract.methods.getPublicKPI(address, i).call();
+      const description = database[i.toString()]; // Convert i to string to match key
+      resultObject[description] = test; // Removes the 'n', keeps value as string
+    }
+  
+    console.log(resultObject);
+    return resultObject;
+  };
+  
+  readFromSmartContract();

@@ -2,7 +2,7 @@ const doughnutChartData = {
     datasets: [
       {
         label: 'asset part',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [10,10,10,10,5,5,15,17],
         backgroundColor: [
           'rgba(123, 44, 191, 1)',
           'rgba(204, 12, 123, 1)',

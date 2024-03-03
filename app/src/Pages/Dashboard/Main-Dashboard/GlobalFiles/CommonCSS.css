@@ -233,7 +233,7 @@ main {
 .pop-up {
   animation: popIn 1s ease-out forwards;
   width: 700px;
-  height: 350px;
+  height: 400px;
   justify-content: center;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -290,19 +290,22 @@ main {
 }
 .pop-up-sumup {
   color: rgb(0, 0, 0);
-  font-size: 1rem;
-  /* text-align: justify; */
-  text-align: left;
+  font-size: 0.8rem;
+  text-align: justify;
+  /* text-align: left; */
   width: 500px;
-  margin-top: 5px;
+  margin-top: 3%;
+  margin-bottom: 3%;
 
 }
 
 .pop-up-kpi{
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 2%;
 }
+
 
 
 @keyframes popIn {

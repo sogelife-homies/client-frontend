@@ -234,7 +234,7 @@ const FrontPage = () => {
         <div className="maindiv">
           <div className="one commondiv">
             <div>
-              <h1>27</h1>
+              <h1>70 000</h1>
               <p>Net Value</p>
             </div>
             <MdAttachMoney className="overviewIcon" />
@@ -242,14 +242,14 @@ const FrontPage = () => {
           <div className="two commondiv">
             {" "}
             <div>
-              <h1>27</h1>
+              <h1>9</h1>
               <p>Assets</p>
             </div>
             <MdChromeReaderMode className="overviewIcon" />
           </div>
           <div className="three commondiv">
             <div>
-              <h1>27</h1>
+              <h1>72</h1>
               <p>Health</p>
             </div>
             <RiEmpathizeLine className="overviewIcon" />
@@ -257,7 +257,7 @@ const FrontPage = () => {
           <div className="six commondiv">
             {" "}
             <div>
-              <h1>27</h1>
+              <h1>89</h1>
               <p>Global feeling</p>
             </div>
             <MdEmojiEmotions  className="overviewIcon" />
@@ -286,27 +286,57 @@ const FrontPage = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>fake name</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>Nestlé S.A. (NESN.SW)</td>
+                        <td>7 000 €</td>
+                        <td>{selectedRecord?.score}</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>Royal Dutch Shell plc (RDSB.L)</td>
+                        <td> 000 €</td>
+                        <td>10%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
+                        <td>SAP SE (SAP.DE)</td>
+                        <td>2 000 €</td>
+                        <td>10%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                       <tr>
-                        <td>3</td>
-                        <td>3</td>
-                        <td>3</td>
+                        <td>LVMH (LVMH.PA)</td>
+                        <td>7 000 €</td>
+                        <td>10%</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>Novartis AG (NOVN.SW) </td>
+                        <td>7 000 €</td>
+                        <td>10%</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>Siemens AG (SIE.DE) </td>
+                        <td>3 500 €</td>
+                        <td>5%</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>Total SE (TOT.PA)</td>
+                        <td>3 500 €</td>
+                        <td>5%</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>German Government Bonds </td>
+                        <td>10 500 €</td>
+                        <td>15%</td>
+                        <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
+                      </tr>
+                      <tr>
+                        <td>European Corporate Bonds(e.g., L'Oréal Bonds)</td>
+                        <td>11 900 €</td>
+                        <td>17%</td>
                         <td><button className="pop-up-button" onClick={() => handleMetricClick()}>?</button></td>
                       </tr>
                 </tbody>
@@ -320,9 +350,10 @@ const FrontPage = () => {
             <>
               <h2 className="pop-up-title">Metric details</h2>
               <div className="pop-up-container-info">
-              <p className="pop-up-score">{selectedRecord?.score} ->{selectedRecord?.emoji} </p>
+              <p className="pop-up-score">{selectedRecord?.score} ➜ {selectedRecord?.emoji} </p>
               <p className="pop-up-sumup"> {selectedRecord?.summary}</p>
               <div className="pop-up-kpi" >
+              <span>Explaine the Metric :</span>
               <p> KPI X: {contractData}</p>
               <p> KPI 1: {contractData}</p>
               </div>
